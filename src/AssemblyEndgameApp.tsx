@@ -15,6 +15,7 @@ function AssemblyEndgameApp() {
   const wrongGuessCount = guessedLetters.filter(
     (guessedLetter) => !currentWord.includes(guessedLetter)
   ).length;
+  const numGuessesLeft = languages.length - 1 - wrongGuessCount;
   const isGameWon = currentWord
     .split("")
     .every((letter) => guessedLetters.includes(letter));
@@ -53,6 +54,8 @@ function AssemblyEndgameApp() {
         guessedLetters={guessedLetters}
         guessedLetterChange={handleGuessedLetterChange}
         gameOver={isGameOver}
+        numGuessesLeft={numGuessesLeft}
+        lastGuessedLetter={lastGuessedLetter}
       />
       {isGameOver && (
         <button type="button" className="new-game-btn">

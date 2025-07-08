@@ -45,6 +45,8 @@ export default function GameStatus({
         lost: isGameLost,
         farewell: lastGuessIncorrect,
       })}
+      aria-live="polite"
+      role="status"
     >
       {noticeContent()}
     </section>
