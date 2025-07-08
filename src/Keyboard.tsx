@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 export default function Keyboard(props: {
   currentWord: string;
   guessedLetters: string[];
+  gameOver: boolean;
   guessedLetterChange: (letter: string) => void;
 }) {
   const alphabets = "abcdefghijklmnopqrstuvwxyz";
@@ -26,6 +27,7 @@ export default function Keyboard(props: {
             key={indx}
             aria-label={"Letter " + alphabet + " button"}
             onClick={() => props.guessedLetterChange(alphabet)}
+            disabled={props.gameOver}
           >
             {alphabet.toUpperCase()}
           </button>

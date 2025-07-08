@@ -1,14 +1,23 @@
 import clsx from "clsx";
+import { getFarewellText } from "./utils";
+import { languages } from "./languages";
 
 export default function GameStatus({
   isGameWon,
   isGameLost,
+  isGameOver,
+  lastGuessIncorrect,
+  wrongGuessCount,
 }: {
   isGameWon: boolean;
   isGameLost: boolean;
+  isGameOver: boolean;
+  lastGuessIncorrect: boolean;
+  wrongGuessCount: number;
 }) {
+  console.log("gameover", isGameOver);
   const noticeContent = () => {
-    if (isGameWon || isGameLost) {
+    if (isGameOver && (isGameWon || isGameLost)) {
       return (
         <>
           <h3> {isGameWon ? "You won!" : "Game Over!!"} </h3>
@@ -19,11 +28,23 @@ export default function GameStatus({
           </p>
         </>
       );
+    } else if (!isGameOver && lastGuessIncorrect) {
+      return (
+        <>
+          <p className="farewell-text">
+            {getFarewellText(languages[wrongGuessCount - 1].name)}
+          </p>
+        </>
+      );
     }
   };
   return (
     <section
-      className={clsx("game-status", { won: isGameWon, lost: isGameLost })}
+      className={clsx("game-status", {
+        won: isGameWon,
+        lost: isGameLost,
+        farewell: lastGuessIncorrect,
+      })}
     >
       {noticeContent()}
     </section>

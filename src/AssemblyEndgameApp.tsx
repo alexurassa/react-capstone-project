@@ -21,6 +21,11 @@ function AssemblyEndgameApp() {
   const isGameLost = wrongGuessCount >= languages.length - 1;
   const isGameOver = isGameWon || isGameLost;
 
+  const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
+  const isLastGuessIncorrect =
+    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
+  console.log("isLastGuessCorrect", isLastGuessIncorrect);
+
   console.log("wrong guess count: ", wrongGuessCount);
 
   const handleGuessedLetterChange = (letter: string) => {
@@ -34,13 +39,20 @@ function AssemblyEndgameApp() {
   return (
     <>
       <Header />
-      <GameStatus isGameWon={isGameWon} isGameLost={isGameLost} />
+      <GameStatus
+        isGameOver={isGameOver}
+        isGameWon={isGameWon}
+        isGameLost={isGameLost}
+        lastGuessIncorrect={isLastGuessIncorrect}
+        wrongGuessCount={wrongGuessCount}
+      />
       <LanguagesList wrongGuessCount={wrongGuessCount} />
       <Input currentWord={currentWord} guessedLetters={guessedLetters} />
       <Keyboard
         currentWord={currentWord}
         guessedLetters={guessedLetters}
         guessedLetterChange={handleGuessedLetterChange}
+        gameOver={isGameOver}
       />
       {isGameOver && (
         <button type="button" className="new-game-btn">

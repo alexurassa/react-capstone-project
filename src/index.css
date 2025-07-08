@@ -35,7 +35,10 @@ body {
 
 .game-status {
   margin-block: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   color: #f9f4da;
   border-radius: 0.25rem;
   padding: 0.5rem;
@@ -53,6 +56,10 @@ body {
 
 .game-status.lost {
   background-color: #ba2a2a;
+}
+
+.game-status.farewell {
+  background-color: #7a5ea7;
 }
 
 .game-status h3 {
@@ -132,6 +139,11 @@ body {
 
 .keyboard-btn.wrong {
   background-color: #ec5d49;
+}
+
+.keyboard-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .new-game-btn {
