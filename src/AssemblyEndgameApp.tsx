@@ -5,10 +5,11 @@ import { useState } from "react";
 import { languages } from "./languages";
 import Input from "./Input";
 import Keyboard from "./Keyboard";
+import getRandomWord from "./utils";
 
 function AssemblyEndgameApp() {
   // State variables
-  const [currentWord, setCurrentWord] = useState<string>("react");
+  const [currentWord, setCurrentWord] = useState<string>(() => getRandomWord());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   // Derived values
@@ -25,9 +26,6 @@ function AssemblyEndgameApp() {
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
   const isLastGuessIncorrect =
     lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
-  console.log("isLastGuessCorrect", isLastGuessIncorrect);
-
-  console.log("wrong guess count: ", wrongGuessCount);
 
   const handleGuessedLetterChange = (letter: string) => {
     setGuessedLetters((existingLetters) => {
@@ -36,6 +34,11 @@ function AssemblyEndgameApp() {
         : [...existingLetters, letter];
     });
   };
+
+  function resetTheGame() {
+    setCurrentWord(getRandomWord()); // choose another random word
+    setGuessedLetters([]); // reset guessed letters to empty array
+  }
 
   return (
     <>
@@ -58,7 +61,7 @@ function AssemblyEndgameApp() {
         lastGuessedLetter={lastGuessedLetter}
       />
       {isGameOver && (
-        <button type="button" className="new-game-btn">
+        <button type="button" className="new-game-btn" onClick={resetTheGame}>
           New Game
         </button>
       )}
