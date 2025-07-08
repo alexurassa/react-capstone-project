@@ -35,16 +35,24 @@ body {
 
 .game-status {
   margin-block: 2rem;
-  background-color: #10a95b;
   text-align: center;
   color: #f9f4da;
   border-radius: 0.25rem;
   padding: 0.5rem;
+  block-size: 59px;
 }
 
 .game-status *,
 :not(h3) {
   margin: 0px;
+}
+
+.game-status.won {
+  background-color: #10a95b;
+}
+
+.game-status.lost {
+  background-color: #ba2a2a;
 }
 
 .game-status h3 {
@@ -65,6 +73,21 @@ body {
   border-radius: 0.24rem;
   font-size: 0.75rem;
   padding: 0.25rem;
+  position: relative;
+}
+
+.lang-chip.lost::before {
+  content: "💀";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 0.85rem;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .letter-section {
@@ -99,8 +122,16 @@ body {
   color: #1e1e1e;
   font-weight: 600;
   font-size: 1rem;
-  background-color: #FCBA29;
+  background-color: #fcba29;
   cursor: pointer;
+}
+
+.keyboard-btn.correct {
+  background-color: #10a95b;
+}
+
+.keyboard-btn.wrong {
+  background-color: #ec5d49;
 }
 
 .new-game-btn {
