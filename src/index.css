@@ -113,6 +113,10 @@ body {
   aspect-ratio: 1/1;
 }
 
+.letter-input.missed-letter {
+  color: #EC5D49;
+}
+
 .keyboard {
   display: flex;
   justify-content: center;

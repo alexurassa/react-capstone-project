@@ -1,15 +1,27 @@
+import clsx from "clsx";
+
 export default function Input(props: {
   currentWord: string;
   guessedLetters: string[];
+  gameLost: boolean;
 }) {
   const letters = props.currentWord.split("");
-  return (
-    <section className="letter-section">
-      {letters.map((letter, index) => (
-        <span key={index} className="letter-input">
-          {props.guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
-        </span>
-      ))}
-    </section>
-  );
+  const letterElements = letters.map((letter, index) => {
+    const shouldRevealLetter =
+      props.gameLost || props.guessedLetters.includes(letter);
+    const letterClassName = clsx(
+      "letter-input",
+      props.gameLost &&
+        !props.guessedLetters.includes(letter) &&
+        "missed-letter"
+    );
+
+    return (
+      <span key={index} className={letterClassName}>
+        {shouldRevealLetter ? letter.toUpperCase() : ""}
+      </span>
+    );
+  });
+
+  return <section className="letter-section">{letterElements}</section>;
 }

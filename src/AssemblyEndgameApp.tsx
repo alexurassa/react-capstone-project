@@ -51,7 +51,11 @@ function AssemblyEndgameApp() {
         wrongGuessCount={wrongGuessCount}
       />
       <LanguagesList wrongGuessCount={wrongGuessCount} />
-      <Input currentWord={currentWord} guessedLetters={guessedLetters} />
+      <Input
+        currentWord={currentWord}
+        guessedLetters={guessedLetters}
+        gameLost={isGameLost}
+      />
       <Keyboard
         currentWord={currentWord}
         guessedLetters={guessedLetters}

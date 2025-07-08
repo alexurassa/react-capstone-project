@@ -15,7 +15,6 @@ export default function GameStatus({
   lastGuessIncorrect: boolean;
   wrongGuessCount: number;
 }) {
-  console.log("gameover", isGameOver);
   const noticeContent = () => {
     if (isGameOver && (isGameWon || isGameLost)) {
       return (
