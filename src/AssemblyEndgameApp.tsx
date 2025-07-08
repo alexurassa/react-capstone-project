@@ -6,6 +6,7 @@ import { languages } from "./languages";
 import Input from "./Input";
 import Keyboard from "./Keyboard";
 import getRandomWord from "./utils";
+import ReactConfetti from "react-confetti";
 
 function AssemblyEndgameApp() {
   // State variables
@@ -42,6 +43,9 @@ function AssemblyEndgameApp() {
 
   return (
     <>
+      {isGameOver && isGameWon && (
+        <ReactConfetti recycle={false} numberOfPieces={1000} />
+      )}
       <Header />
       <GameStatus
         isGameOver={isGameOver}
