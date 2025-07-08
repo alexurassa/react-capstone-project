@@ -48,7 +48,6 @@ export default function Keyboard(props: {
               type="button"
               className={btnStatusClass}
               key={indx}
-              aria-label={"Letter " + alphabet + " button"}
               onClick={() => props.guessedLetterChange(alphabet)}
               disabled={props.gameOver}
               aria-disabled={props.guessedLetters.includes(alphabet)}

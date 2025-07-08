@@ -26,7 +26,7 @@ function AssemblyEndgameApp() {
 
   const lastGuessedLetter = guessedLetters[guessedLetters.length - 1];
   const isLastGuessIncorrect =
-    lastGuessedLetter && !currentWord.includes(lastGuessedLetter);
+    lastGuessedLetter !== undefined && !currentWord.includes(lastGuessedLetter);
 
   const handleGuessedLetterChange = (letter: string) => {
     setGuessedLetters((existingLetters) => {
